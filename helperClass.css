@@ -1,0 +1,501 @@
+/* Helper Classes */
+/* Helper Classes */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Detect position of tooltip and adjust placement */
+.tooltip .tooltiptext[data-position="top"] {
+  bottom: 125%; 
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip .tooltiptext[data-position="bottom"] {
+  top: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip .tooltiptext[data-position="left"] {
+  top: 50%;
+  right: 125%;
+  transform: translateY(-50%);
+}
+
+.tooltip .tooltiptext[data-position="right"] {
+  top: 50%;
+  left: 125%;
+  transform: translateY(-50%);
+}
+
+
+/* Other Useful Classes */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.image-overlay {
+  position: relative;
+}
+
+.image-overlay img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-overlay .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+
+.image-overlay:hover .overlay {
+  height: 100%;
+}
+
+.image-overlay .overlay .caption {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+} 
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-align-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-justify-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+span.ripple {
+  position: absolute; /* The absolute position we mentioned earlier */
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.pt-1 {
+  padding-top: 1rem;
+}
+
+.pr-1 {
+  padding-right: 1rem;
+}
+
+.pb-1 {
+  padding-bottom: 1rem;
+}
+
+.pl-1 {
+  padding-left: 1rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.card-2 {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 2.1rem;
+  font-weight: bold;
+  margin: 1em;
+}
+
+.card-body {
+  padding: 10px;
+}.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.vertical-align-middle {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-align-top {
+  display: flex;
+  align-items: flex-start;
+}
+
+.vertical-align-bottom {
+  display: flex;
+  align-items: flex-end;
+}
+.font-small {
+  font-size: 14px;
+}
+
+.font-medium {
+  font-size: 16px;
+}
+
+.font-large {
+  font-size: 18px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.col {
+  flex: 1;
+  padding: 10px;
+}
+.opacity-hover:hover {
+  opacity: 0.8;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.box-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.underline-hover:hover {
+  text-decoration: underline;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+}
+.bg-gradient {
+  background: linear-gradient(to right, #00c3ff, #0071ff);
+}
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background-color: #000;
+  border-radius: 0.25rem;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.outline-none {
+  outline: none;
+}
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.d-flex {
+  display: flex;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+
+ 
+
+
+.surf {
+  align-items: center;
+  background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+   -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  width: 200px;
+}
+
+.surf-1 {
+  background: #afd275;
+}
+
+.surf-2 {
+  background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+}
+
+.surf-3 {
+  background: linear-gradient(135deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+}
+
+ 
+
+.bg-danger{
+  background-color: red;
+}   
+.bg-cool{
+  background-color: skyblue;
+}
+.bg-dark{
+  background-color: rgba(0, 0, 0, 0.3)
+}
+.bg-light{
+  background-color: rgba(255, 255, 255, 0.9)
+}
+.bg-black{
+  background-color: black
+}
+.btn-dark { 
+  color: #ffffff; 
+  background-color: #030203; 
+  border-color: #FAFAFA; 
+} 
+ 
+.btn-dark:hover, 
+.btn-dark:focus, 
+.btn-dark:active, 
+.btn-dark.active, 
+.open .dropdown-toggle.btn-dark { 
+  color: #000; 
+  background-color: #FFFFFF; 
+  border-color: #FAFAFA; 
+} 
+ 
+.btn-dark:active, 
+.btn-dark.active, 
+.open .dropdown-toggle.btn-dark { 
+  background-image: none; 
+} 
+ 
+.btn-dark.disabled, 
+.btn-dark[disabled], 
+fieldset[disabled] .btn-dark, 
+.btn-dark.disabled:hover, 
+.btn-dark[disabled]:hover, 
+fieldset[disabled] .btn-dark:hover, 
+.btn-dark.disabled:focus, 
+.btn-dark[disabled]:focus, 
+fieldset[disabled] .btn-dark:focus, 
+.btn-dark.disabled:active, 
+.btn-dark[disabled]:active, 
+fieldset[disabled] .btn-dark:active, 
+.btn-dark.disabled.active, 
+.btn-dark[disabled].active, 
+fieldset[disabled] .btn-dark.active { 
+  background-color: #030203; 
+  border-color: #FAFAFA; 
+  color: white
+} 
+ 
+.btn-dark .badge { 
+  color: #030203; 
+  background-color: #ffffff; 
+}
+.container-cover{
+  width: 100vw;
+}
+.container-1{
+  min-width: 25vw;
+  max-width: 30vw;
+  min-height: 40vh;
+}
+.container-2{
+  min-width: 50vw;
+  max-width: 60vw;
+  min-height: 50vh;
+}
+.h1{
+  font-size: 2.9rem;
+  font-weight: lighter;
+  font-family:"Roboto",sans-serif;
+}
+.text-light{
+  color: white;
+}
