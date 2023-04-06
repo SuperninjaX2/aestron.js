@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DomManipulator Framework Guide</title>
+<style type="text/css" media="all">
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: Monospace;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  background-color: #f2f2f2;
+}
+
+h1, h2 {
+  margin: 1em 0;
+}
+
+h1 {
+  font-size: 30px;
+  
+}
+
+h2 {
+  font-size: 23px;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+pre {
+  margin: 1em 0;
+  padding: 0.5em;
+  background-color: rgba(255,255,255,0.4);
+  border: 1px solid #ddd;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.9);
+  border-radius: 3.5px;
+  border: none;
+}
+
+code {
+  font-family:  monospace;
+  font-size: 16px;
+}
+
+.container1 {
+  border: none;
+  background: rgba(255,255,255,0.1);
+  margin-top: -5vh;
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+#end {
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    height: 30px;
+    overflow: hidden;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    
+}
+</style>
+</head>
+<body>
+    <div class="container1">
+        
+
+	<h1>AestronJs Framework</h1>
+	<p>The DomManipulator framework provides methods to manipulate DOM elements using vanilla JavaScript. In this guide, we will go through the methods for adding and removing classes, toggling classes, setting text and HTML content. </p>
+	<h2>Adding and Removing Classes</h2>
+	<p>The `addClass(className)` method adds the specified class to all elements matched by the selector passed in the constructor. The `removeClass(className)` method removes the specified class from all matched elements.</p>
+	<p>To use these methods, create an instance of the `DomManipulator` class with a CSS selector:</p>
+	<pre><code>const elements = $('.my-class');</code></pre>
+	<p>To add a class, call the `addClass` method:</p>
+	<pre><code>elements.addClass('new-class');</code></pre>
+	<p>To remove a class, call the `removeClass` method:</p>
+	<pre><code>elements.removeClass('old-class');</code></pre>
+	
+	<h2>Toggling Classes</h2>
+	<p>The `toggleClass(className)` method adds the specified class to all elements matched by the selector passed in the constructor if the class is not present, and removes it if it is present.</p>
+	<pre><code>elements.toggleClass('active');</code></pre>
+	
+	<h2>Setting Text and HTML Content</h2>
+	<p>The `text(value)` method sets the text content of all matched elements to the specified value. If no value is passed, the text content of the first matched element is returned.</p>
+	<pre><code>elements.text('Hello, world!');</code></pre>
+	<p>The `html(value)` method sets the HTML content of all matched elements to the specified value. If no value is passed, the HTML content of the first matched element is returned.</p>
+	<pre><code>elements.html('&lt;p&gt;This is a paragraph.&lt;/p&gt;');</code></pre>
+	    <h2>Introduction to on() and off() methods</h2>
+    <p>In JavaScript, the <code>on()</code> and <code>off()</code> methods are used to attach and detach event listeners to elements, respectively. Here's a simple example of how to use these methods:</p>
+    <p>To attach a click event listener to a button:</p>
+    <div class="code-example">   <pre> <code>
+const myButton = document.querySelector('button');
+
+myButton.on('click', function() {
+  console.log('The button was clicked!');
+});
+   < </code>   </pre> </div>
+    <p>To remove the click event listener from the button:</p>
+    <div class="code-example">   <pre> <code>
+myButton.off('click', function() {
+  console.log('The button was clicked!');
+});
+    </code>   </pre> </div>
+    <p>In both cases, the first argument to the method is the name of the event you want to listen for (in this case, "click"). The second argument is a callback function that will be executed when the event is triggered.</p>
+      <div>
+    <h2>Introduction to css(), appendElement(), and getCssValue() methods</h2>
+    <p>In JavaScript, the <code>css()</code>, <code>appendElement()</code>, and <code>getCssValue()</code> methods can be used to manipulate the style and content of HTML elements. Here are some simple examples of how to use these methods:</p>
+    <p>To change the background color of a button:</p>
+    <pre><code>
+const myButton = document.querySelector('button');
+
+myButton.css('background-color', 'red');
+    </code></pre>
+    <p>To append a new paragraph element to a div:</p>
+    <pre><code>
+const myDiv = document.querySelector('div');
+
+myDiv.appendElement('p', {}, 'This is a new paragraph.');
+    </code></pre>
+    <p>To get the font size of a heading:</p>
+    <pre><code>
+const myHeading = document.querySelector('h1');
+const fontSize = myHeading.getCssValue('font-size');
+console.log(`The font size of the heading is: ${fontSize}`);
+    </code></pre>
+    <p>In each example, the first argument to the method specifies the property or attribute you want to manipulate or retrieve. The second argument (if any) specifies the value you want to set for the property or attribute. The <code>appendElement()</code> method takes two additional optional arguments: an object that specifies attributes for the new element, and a string that specifies the text content of the new element.</p>
+  </div>
+    <h2>Explanation of mergeElement() method</h2>
+    <p>In JavaScript, the <code>mergeElement()</code> method can be used to create a new HTML element and add it to the page. This method has many features that can be used to customize the element.</p>
+
+    <p>Here is an example of how to use the <code>mergeElement()</code> method to create a new div element with all the available features:</p>
+    <pre>
+      <code>
+const myElement = $(document.querySelector('.my-element'));
+myElement.mergeElement('div', {
+  attributes: {
+    'id': 'new-element',
+    'class': 'new-class',
+    'data-attribute': 'some-value'
+  },
+  text: 'Hello, world!',
+  css: 'background-color: red; color: white;',
+  textNode: '',
+  classes: ['class1', 'class2'],
+  dataset: {
+    'data-attribute1': 'value1',
+    'data-attribute2': 'value2'
+  },
+  events: {
+    'click': () => alert('You clicked me!')
+  },
+  children: [],
+  style: {
+    'font-size': '18px',
+    'font-weight': 'bold'
+  },
+  callback: (element) => console.log('New element created!', element),
+  replace: false,
+  targetSelector: null,
+  code: ''
+});
+      </code>
+    </pre>
+
+    <p>In this example, the <code>mergeElement()</code> method creates a new div element with the following features:</p>
+    <ul>
+      <li><strong>attributes:</strong> The new element has an ID of "new-element", a class of "new-class", and a custom data attribute with a value of "some-value".</li>
+      <li><strong>text:</strong> The new element has text content of "Hello, world!".</li>
+      <li><strong>css:</strong> The new element has a background color of red and text color of white.</li>
+      <li><strong>textNode:</strong> Not used in this example.</li>
+      <li><strong>classes:</strong> The new element has two additional classes, "class1" and "class2".</li>
+      <li><strong>dataset:</strong> The new element has two custom data attributes with values of "value1" and "value2".</li>
+      <li><strong>events:</strong> The new element has a click event listener that displays an alert message.</li>
+      <li><strong>children:</strong> Not used in this example.</li>
+      <li><strong>style:</strong> The new element has a font size of 18px and font weight of bold.</li>
+      <li><strong>callback:</strong> A callback function is called after the new element is created, which logs a message to the console.</li>
+      <li><strong>replace:</strong> Not used in this example.</li>
+      <li><strong>targetSelector:</strong> Not used in this example.</li>
+      <li><strong>code:</strong> Not used in this example.</li>
+    </ul>
+    <h1>DomManipulator Methods Guide</h1>
+
+    <h2>getPosition()</h2>
+    <p>The <code>getPosition()</code> method returns the position of the first element in the DomManipulator object relative to its offset parent. Here's an example:</p>
+
+    <pre><code>const elementPosition = element.getPosition();</code></pre>
+
+    <p>The <code>getPosition()</code> method is useful when you need to know the position of an element in order to position another element relative to it, for example.</p>
+
+    <h2>find()</h2>
+    <p>The <code>find()</code> method returns a new DomManipulator object that contains all descendants of the elements in the original object that match the given CSS selector. Here's an example:</p>
+
+    <pre><code>const descendants = parent.find('p');</code></pre>
+
+    <p>The above code will create a new DomManipulator object that contains all <code>&lt;p&gt;</code> elements that are descendants of the <code>parent</code> element.</p>
+
+      </div>
+      <pre id="end">that's all with AestronJs for now. Thank You!
+      </pre>
+</body>
+</html>
