@@ -391,7 +391,9 @@ function $(selector) {
 
 window.Aestron = {
   DomManipulator,
-  el
+  el,
+  $
+
 };
 
 //ripple 
