@@ -120,7 +120,7 @@ class DomManipulator {
    getPosition() {
     const element = this.elements[0];
     const parent = element.offsetParent;
-    const position = {
+    let position = {
       top: element.offsetTop,
       left: element.offsetLeft
     };
@@ -135,8 +135,9 @@ class DomManipulator {
   }
   find(selector) {
   const descendants = this.elements.flatMap(element => Array.from(element.querySelectorAll(selector)));
-  return new DomManipulator(descendants);
+  return descendants.length ? new DomManipulator(descendants) : $([]);
 }
+
 mergeElement(tagName, {
     attributes = {},
     text = '',
@@ -201,20 +202,221 @@ mergeElement(tagName, {
       });
       return this;
     }
+    function add(selector, options) {
+  const target = document.querySelector(selector);
+  if (!target) return;
+
+  if (options.text) {
+    target.textContent = options.text;
   }
 
+  if (options.classes && options.classes.length > 0) {
+    target.classList.add(...options.classes);
+  }
 
+  if (options.attributes) {
+    Object.keys(options.attributes).forEach(key => {
+      target.setAttribute(key, options.attributes[key]);
+    });
+  }
+
+  if (options.dataset) {
+    Object.keys(options.dataset).forEach(key => {
+      target.dataset[key] = options.dataset[key];
+    });
+  }
+
+  if (options.children && options.children.length > 0) {
+    options.children.forEach(child => {
+      const childElem = document.createElement(child.tagName);
+      if (child.text) {
+        childElem.textContent = child.text;
+      }
+      if (child.attributes) {
+        Object.keys(child.attributes).forEach(key => {
+          childElem.setAttribute(key, child.attributes[key]);
+        });
+      }
+      if (child.dataset) {
+        Object.keys(child.dataset).forEach(key => {
+          childElem.dataset[key] = child.dataset[key];
+        });
+      }
+      if (child.events) {
+        Object.keys(child.events).forEach(key => {
+          childElem.addEventListener(key, child.events[key]);
+        });
+      }
+      target.appendChild(childElem);
+    });
+  }
+
+  if (options.replace) {
+    const newElem = document.createElement(options.tagName);
+    if (options.text) {
+      newElem.textContent = options.text;
+    }
+    if (options.classes && options.classes.length > 0) {
+      newElem.classList.add(...options.classes);
+    }
+    if (options.attributes) {
+      Object.keys(options.attributes).forEach(key => {
+        newElem.setAttribute(key, options.attributes[key]);
+      });
+    }
+    if (options.dataset) {
+      Object.keys(options.dataset).forEach(key => {
+        newElem.dataset[key] = options.dataset[key];
+      });
+    }
+    if (options.children && options.children.length > 0) {
+      options.children.forEach(child => {
+        const childElem = document.createElement(child.tagName);
+        if (child.text) {
+          childElem.textContent = child.text;
+        }
+        if (child.attributes) {
+          Object.keys(child.attributes).forEach(key => {
+            childElem.setAttribute(key, child.attributes[key]);
+          });
+        }
+        if (child.dataset) {
+          Object.keys(child.dataset).forEach(key => {
+            childElem.dataset[key] = child.dataset[key];
+          });
+        }
+        if (child.events) {
+          Object.keys(child.events).forEach(key => {
+            childElem.addEventListener(key, child.events[key]);
+          });
+        }
+        newElem.appendChild(childElem);
+      });
+    }
+    target.parentNode.replaceChild(newElem, target);
+  }
+}
+
+  }
+
+ fadeIn(duration = 1000) {
+         this.elements.forEach(element => {
+                 element.style.opacity = 0;
+                 element.style.display = "block";
+                 let start = null;
+                 const step = timestamp => {
+                         if (!start) start = timestamp;
+                         const progress = timestamp - start;
+                         element.style.opacity = Math.min(progress / duration, 1);
+                         if (progress < duration) {
+                                 window.requestAnimationFrame(step);
+                         }
+                 };
+                 window.requestAnimationFrame(step);
+         });
+         return this;
+ }
+
+ fadeOut(duration = 1000) {
+         this.elements.forEach(element => {
+                 element.style.opacity = 1;
+                 let start = null;
+                 const step = timestamp => {
+                         if (!start) start = timestamp;
+                         const progress = timestamp - start;
+                         element.style.opacity = Math.max(1 - progress / duration, 0);
+                         if (progress < duration) {
+                                 window.requestAnimationFrame(step);
+                         } else {
+                                 element.style.display = "none";
+                         }
+                 };
+                 window.requestAnimationFrame(step);
+         });
+         return this;
+ }
+
+ slideIn(duration = 1000, distance = "100%") {
+         this.elements.forEach(element => {
+                 element.style.transform = `translateX(${distance})`;
+                 element.style.display = "block";
+                 let start = null;
+                 const step = timestamp => {
+                         if (!start) start = timestamp;
+                         const progress = timestamp - start;
+                         element.style.transform = `translateX(${Math.min(
+           progress / duration,
+           1
+         ) * parseInt(distance)}px)`;
+                         if (progress < duration) {
+                                 window.requestAnimationFrame(step);
+                         }
+                 };
+                 window.requestAnimationFrame(step);
+         });
+         return this;
+ }
+
+ slideOut(duration = 1000, distance = "100%") {
+         this.elements.forEach(element => {
+                 element.style.transform = "translateX(0)";
+                 let start = null;
+                 const step = timestamp => {
+                         if (!start) start = timestamp;
+                         const progress = timestamp - start;
+                         element.style.transform = `translateX(${Math.max(
+           1 - progress / duration,
+           0
+         ) * parseInt(distance)}px)`;
+                         if (progress < duration) {
+                                 window.requestAnimationFrame(step);
+                         } else {
+                                 element.style.display = "none";
+                         }
+                 };
+                 window.requestAnimationFrame(step);
+         });
+         return this;
+ }
 }
 
 
 
-function $(selector) {
+function el(selector) {
   return new DomManipulator(selector);
+}
+function $(selector) {
+        return new DomManipulator(selector);
 }
 
 window.Aestron = {
   DomManipulator,
-  $
+  el
 };
 
+//ripple 
+function createRipple(event) {
+  const button = event.currentTarget;
 
+  const circle = document.createElement("span");
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+  circle.classList.add("ripple");
+
+  const ripple = button.getElementsByClassName("ripple")[0];
+
+  if (ripple) {
+    ripple.remove();
+  }
+
+  button.appendChild(circle);
+}
+
+const buttons = document.getElementsByTagName("button");
+for (const button of buttons) {
+  button.addEventListener("click", createRipple);
+}
