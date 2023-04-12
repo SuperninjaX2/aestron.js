@@ -218,3 +218,25 @@ window.Aestron = {
 };
 
 
+const button = document.querySelector('.ripple');
+
+button.addEventListener('click', function(e) {
+  const ripple = document.createElement('span');
+  button.appendChild(ripple);
+
+  ripple.style.position = 'absolute';
+  ripple.style.width = ripple.style.height = `${button.offsetWidth}px`;
+  ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+  ripple.style.opacity = '0';
+
+  const rect = button.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  ripple.style.left = `${x}px`;
+  ripple.style.top = `${y}px`;
+
+  setTimeout(() => {
+    ripple.remove();
+  }, 1000);
+});
