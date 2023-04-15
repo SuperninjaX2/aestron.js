@@ -1,0 +1,35 @@
+/*csslint adjoiningclasses: false, boxmodel:false*/
+.menu {
+    boxsizing: borderbox;
+}
+
+.menufixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+
+.menulist,
+.menuitem {
+    position: relative;
+}
+
+.menulist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuitem {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.menulink,
+.menuheading {
+    display: block;
+    text-decoration: none;
+    whitespace: nowrap;
+}
